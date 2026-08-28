@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash mark: three empty circles and one filled - spot the odd one out. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288">
+
+    <path
+        android:pathData="M84,110a26,26 0 1,0 52,0a26,26 0 1,0 -52,0"
+        android:strokeColor="@color/brand_ink"
+        android:strokeWidth="8.4" />
+    <path
+        android:pathData="M152,110a26,26 0 1,0 52,0a26,26 0 1,0 -52,0"
+        android:strokeColor="@color/brand_ink"
+        android:strokeWidth="8.4" />
+    <path
+        android:pathData="M84,178a26,26 0 1,0 52,0a26,26 0 1,0 -52,0"
+        android:strokeColor="@color/brand_ink"
+        android:strokeWidth="8.4" />
+    <path
+        android:pathData="M150.4,178a27.6,27.6 0 1,0 55.2,0a27.6,27.6 0 1,0 -55.2,0"
+        android:fillColor="@color/brand_accent" />
+</vector>

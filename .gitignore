@@ -1,0 +1,29 @@
+# Build output
+build/
+.gradle/
+.kotlin/
+.cxx/
+.externalNativeBuild/
+/captures/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local machine configuration - points at this computer's SDK
+local.properties
+
+# Signing material must never be committed
+keystore.properties
+*.jks
+*.keystore
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Scratch
+_to_delete/
+*.zip

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hrvatski prijevod. Redoslijed i nazivi ključeva prate values/strings.xml. -->
+<resources>
+    <string name="app_name">Impostor</string>
+    <string name="app_tagline">Jedna riječ. Jedna tajna. Nađi impostora.</string>
+
+    <!-- Početni zaslon -->
+    <string name="home_new_game">Nova igra</string>
+    <string name="home_how_to_play">Kako se igra</string>
+    <string name="home_settings">Postavke</string>
+    <string name="home_offline_badge">Radi bez interneta. Bez računa. Bez prikupljanja podataka.</string>
+
+    <!-- Jezik -->
+    <string name="language_system_short">Auto</string>
+    <string name="language_english">English</string>
+    <string name="language_croatian">Hrvatski</string>
+
+    <!-- Zajedničko -->
+    <string name="back">Natrag</string>
+    <string name="cancel">Odustani</string>
+    <string name="done">Gotovo</string>
+    <string name="decrease">Smanji</string>
+    <string name="increase">Povećaj</string>
+    <string name="off">Isklj.</string>
+    <string name="player_default_name">Igrač %1$d</string>
+
+    <!-- Postavljanje igre -->
+    <string name="setup_title">Postavljanje igre</string>
+    <string name="setup_players">Igrači</string>
+    <string name="setup_players_help">Svi dijele ovaj jedan mobitel.</string>
+    <string name="setup_impostors">Impostori</string>
+    <string name="setup_impostors_help">Impostori nikad ne vide tajnu riječ.</string>
+    <string name="setup_impostors_random_help">Tajni broj od 1 do %1$d, novi u svakoj rundi.</string>
+    <string name="setup_random_impostors">Nasumično svaku rundu</string>
+    <string name="setup_random_impostors_sub">Nitko ne zna koliko ih zapravo ima.</string>
+    <string name="setup_impostor_warning">Impostori su sada brojniji od posade. Vaš stol, vaša pravila.</string>
+    <string name="setup_categories">Kategorije</string>
+    <string name="setup_difficulty">Težina</string>
+    <string name="setup_difficulty_easy">Lako</string>
+    <string name="setup_difficulty_medium">Srednje</string>
+    <string name="setup_difficulty_hard">Teško</string>
+    <string name="setup_difficulty_mixed">Miješano</string>
+    <string name="setup_hints">Natuknica za impostora</string>
+    <string name="setup_hint_none">Bez</string>
+    <string name="setup_hint_easy">Lakša</string>
+    <string name="setup_hint_vague">Nejasna</string>
+    <string name="setup_hint_help_none">Impostor dobiva samo kategoriju.</string>
+    <string name="setup_hint_help_easy">Jasan trag, npr. \"Talijanska hrana\".</string>
+    <string name="setup_hint_help_vague">Zagonetan trag, npr. \"Okrugla i dijeli se\".</string>
+    <string name="setup_hide_category">Sakrij i kategoriju</string>
+    <string name="setup_hide_category_sub">Impostori ne saznaju baš ništa. Nemilosrdno.</string>
+    <string name="setup_round_timer">Vrijeme za raspravu</string>
+    <string name="setup_voting_timer">Vrijeme za glasanje</string>
+    <string name="setup_player_names">Imena igrača</string>
+    <string name="setup_edit_names">Uredi imena</string>
+    <string name="setup_names_hint">Imena se pamte za sljedeći put. Ostavi prazno za Igrač 1, Igrač 2 i tako dalje.</string>
+    <string name="setup_names_clear">Obriši sva imena</string>
+    <string name="setup_names_default">Igrač 1, Igrač 2, Igrač 3…</string>
+    <string name="setup_names_custom">Upisanih imena: %1$d</string>
+    <string name="setup_start">Započni igru</string>
+    <string name="setup_summary">%1$d u posadi · %2$d impostor</string>
+    <string name="setup_summary_plural">%1$d u posadi · %2$d impostora</string>
+    <string name="setup_summary_random">Najviše %1$d impostora, tajno izvučeno</string>
+    <string name="minutes_short">%1$d min</string>
+    <string name="seconds_short">%1$d s</string>
+
+    <!-- Kategorije -->
+    <string name="category_all">Sve kategorije</string>
+    <string name="category_all_detail">Sve kategorije su u igri.</string>
+    <string name="category_all_selected">Sve kategorije</string>
+    <string name="category_count_selected">Kategorije: %1$d</string>
+    <string name="category_select_all">Koristi sve kategorije</string>
+    <string name="category_word_count">Riječi: %1$d</string>
+
+    <!-- Otkrivanje uloga -->
+    <string name="reveal_pick_your_name">Dodirni svoje ime</string>
+    <string name="reveal_tap_hint">Dodajte mobitel bilo kojim redom. Svako ime može se otvoriti samo jednom.</string>
+    <string name="reveal_already_seen">Već pogledano</string>
+    <string name="reveal_progress">Pogledalo %1$d od %2$d</string>
+    <string name="reveal_you_are_crew">Tajna riječ je</string>
+    <string name="reveal_you_are_impostor">Ti si impostor</string>
+    <string name="reveal_impostor_subtitle">Uklopi se. Otkrij koja je riječ.</string>
+    <string name="reveal_impostor_plural">Jedan si od %1$d impostora</string>
+    <string name="reveal_hint_label">Natuknica</string>
+    <string name="reveal_category_hidden">Kategorija skrivena</string>
+    <string name="reveal_hide">Sakrij i dodaj dalje</string>
+    <string name="reveal_ready">Ja sam %1$s</string>
+    <string name="reveal_ready_generic">Spreman sam</string>
+    <string name="reveal_all_done_title">Svi su spremni</string>
+    <string name="reveal_all_done_body">Stavite mobitel na stol da ga svi vide.</string>
+    <string name="reveal_start_discussion">Započni raspravu</string>
+
+    <!-- Rasprava -->
+    <string name="discussion_title">Rasprava</string>
+    <string name="discussion_body">Redom recite po jednu natuknicu o tajnoj riječi. Kažete premalo i djelujete sumnjivo. Kažete previše i poklonili ste je impostoru.</string>
+    <string name="discussion_first_speaker">%1$s počinje.</string>
+    <string name="discussion_no_timer">Pričajte koliko god želite.</string>
+    <string name="discussion_go_to_vote">Idi na glasanje</string>
+    <string name="discussion_time_up">Vrijeme je isteklo</string>
+    <string name="discussion_pause">Pauza</string>
+    <string name="discussion_resume">Nastavi</string>
+    <string name="discussion_add_time">+30 s</string>
+
+    <!-- Glasanje -->
+    <string name="voting_title">Glasanje</string>
+    <string name="voting_pass_to">Dodaj mobitel igraču</string>
+    <string name="voting_prompt">Tko je po tebi impostor?</string>
+    <string name="voting_prompt_plural">Tko je najsumnjiviji?</string>
+    <string name="voting_lock_in">Potvrdi glas</string>
+    <string name="voting_progress">Glas %1$d od %2$d</string>
+    <string name="voting_hidden">Glas je zabilježen</string>
+    <string name="voting_skip">Preskoči glasanje</string>
+    <string name="voting_skip_explain">Idi ravno na otkrivanje bez bilježenja glasova.</string>
+    <string name="voting_reveal">Otkrij impostora</string>
+    <string name="voting_all_in">Svi su glasali</string>
+
+    <!-- Rezultati -->
+    <string name="results_title">Rezultat</string>
+    <string name="results_secret_word">Tajna riječ bila je</string>
+    <string name="results_impostor_was">Impostor je bio</string>
+    <string name="results_impostors_were">Impostori su bili</string>
+    <string name="results_crew_win">Posada pobjeđuje</string>
+    <string name="results_impostor_win">Impostor pobjeđuje</string>
+    <string name="results_impostors_win">Impostori pobjeđuju</string>
+    <string name="results_crew_win_body">Uhvatili ste svakog impostora.</string>
+    <string name="results_impostor_win_body">Uklopili su se i izvukli.</string>
+    <string name="results_no_votes">Glasovi nisu zabilježeni.</string>
+    <string name="results_votes_title">Glasovi</string>
+    <string name="results_voted_for">%1$s → %2$s</string>
+    <string name="results_tie">Glasovi su bili izjednačeni pa nitko nije uhvaćen.</string>
+    <string name="results_play_again">Igraj ponovno</string>
+    <string name="results_new_category">Nove kategorije</string>
+    <string name="results_change_settings">Promijeni postavke</string>
+    <string name="results_home">Natrag na početak</string>
+    <string name="results_round">Runda %1$d</string>
+
+    <!-- Kako se igra -->
+    <string name="htp_title">Kako se igra</string>
+    <string name="htp_subtitle">Šezdeset sekundi i spremni ste.</string>
+    <string name="htp_step1_title">Postavi igru</string>
+    <string name="htp_step1_body">Odaberite koliko vas igra, koliko impostora skrivate među sobom i koje su kategorije u igri.</string>
+    <string name="htp_step2_title">Dodajte mobitel</string>
+    <string name="htp_step2_body">Dodajte ga bilo kojim redom. Svaki igrač dodirne svoje ime, pogleda sam i opet sakrije. Svi vide istu tajnu riječ — osim impostora.</string>
+    <string name="htp_step3_title">Recite natuknicu</string>
+    <string name="htp_step3_body">Idite ukrug. Svaki igrač kaže jednu riječ ili kratku frazu o tajnoj riječi. Dovoljno jasno da dokažete da je znate, dovoljno nejasno da je ne odate.</string>
+    <string name="htp_step4_title">Glasajte</string>
+    <string name="htp_step4_body">Ponovno dodajte mobitel i svi tajno glasaju za onoga koga sumnjiče.</string>
+    <string name="htp_step5_title">Otkrivanje</string>
+    <string name="htp_step5_body">Posada pobjeđuje ako izglasa svakog impostora. Impostori pobjeđuju ako i jedan preživi.</string>
+    <string name="htp_tip_title">Kućna pravila koja dobro rade</string>
+    <string name="htp_tip_1">Natuknica mora biti jedna riječ ili vrlo kratka fraza.</string>
+    <string name="htp_tip_2">Ne smijete ponoviti natuknicu koja je već rečena.</string>
+    <string name="htp_tip_3">Impostor govori u sredini kruga, nikad prvi.</string>
+    <string name="htp_tip_4">Dva kruga natuknica prije glasanja čine igru boljom.</string>
+
+    <!-- Postavke -->
+    <string name="settings_title">Postavke</string>
+    <string name="settings_section_language">Jezik</string>
+    <string name="settings_language_body">Auto prati postavku uređaja. S jezikom se mijenja i popis riječi.</string>
+    <string name="settings_section_feedback">Zvuk i osjećaj</string>
+    <string name="settings_sound">Zvučni efekti</string>
+    <string name="settings_music">Glazba u pozadini</string>
+    <string name="settings_vibration">Vibracija</string>
+    <string name="settings_keep_screen_on">Drži zaslon uključenim tijekom igre</string>
+    <string name="settings_section_appearance">Izgled</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_system">Sustav</string>
+    <string name="settings_theme_light">Svijetla</string>
+    <string name="settings_theme_dark">Tamna</string>
+    <string name="settings_section_defaults">Zadane postavke igre</string>
+    <string name="settings_default_players">Zadani broj igrača</string>
+    <string name="settings_default_impostors">Zadani broj impostora</string>
+    <string name="settings_default_categories">Zadane kategorije</string>
+    <string name="settings_default_difficulty">Zadana težina</string>
+    <string name="settings_default_hint">Zadana natuknica</string>
+    <string name="settings_section_timers">Mjerači vremena</string>
+    <string name="settings_section_privacy">Privatnost</string>
+    <string name="settings_privacy_body">Impostor radi u cijelosti na ovom uređaju. Nema dopuštenje za internet, ništa ne prikuplja i ništa nikamo ne šalje. Sve što ovdje vidite — riječi, natuknice, postavke i zvukove — pohranjeno je u samoj aplikaciji.</string>
+    <string name="settings_reset_defaults">Vrati na zadano</string>
+    <string name="settings_reset_word_history">Obriši povijest korištenih riječi</string>
+    <string name="settings_word_history_cleared">Povijest je obrisana</string>
+    <string name="settings_version">Verzija %1$s</string>
+
+    <plurals name="results_votes">
+        <item quantity="one">%1$d glas</item>
+        <item quantity="few">%1$d glasa</item>
+        <item quantity="other">%1$d glasova</item>
+    </plurals>
+
+    <!-- Potvrda izlaska -->
+    <string name="quit_title">Napustiti ovu rundu?</string>
+    <string name="quit_body">Trenutna runda bit će izgubljena i svima treba nova riječ.</string>
+    <string name="quit_confirm">Napusti</string>
+
+    <!-- Pristupačnost -->
+    <string name="cd_app_mark">Logo igre Impostor</string>
+</resources>

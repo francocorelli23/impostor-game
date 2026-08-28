@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Window-level colours only. The in-app palette lives in ui/theme/Color.kt. -->
+<resources>
+    <color name="splash_background">#FFF7F5F1</color>
+    <color name="brand_ink">#FF14141A</color>
+    <color name="brand_accent">#FFD62B33</color>
+
+    <!-- Launcher icon colours never follow the device theme. -->
+    <color name="launcher_background">#FF0B0B0F</color>
+    <color name="launcher_ink">#FFEEEBE4</color>
+    <color name="launcher_accent">#FFE5484D</color>
+</resources>

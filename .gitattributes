@@ -1,0 +1,17 @@
+# Normalise text files to LF in the repository.
+* text=auto eol=lf
+
+# Windows batch files must keep CRLF or cmd.exe misreads them.
+*.bat text eol=crlf
+
+# The Gradle wrapper script is executed on Unix - LF, and executable.
+gradlew text eol=lf
+
+# Binary assets: never touched.
+*.jar   binary
+*.ogg   binary
+*.png   binary
+*.ttf   binary
+*.otf   binary
+*.jks   binary
+*.keystore binary

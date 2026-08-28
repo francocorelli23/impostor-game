@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Per-app language support (Android 13+). Add a locale here and drop in the
+  matching values-xx/strings.xml plus assets/words/xx.json to ship a translation.
+-->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="en" />
+    <locale android:name="hr" />
+</locale-config>
