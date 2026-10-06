@@ -72,6 +72,49 @@
     <string name="category_select_all">Koristi sve kategorije</string>
     <string name="category_word_count">Riječi: %1$d</string>
 
+    <!-- Moje riječi -->
+    <string name="home_custom_words">Moje riječi</string>
+    <string name="custom_title">Moje riječi</string>
+    <string name="custom_subtitle">Dodajte svoje riječi u bilo koju kategoriju ili napravite novu. Spremaju se uz popis riječi: %1$s.</string>
+    <string name="custom_section_yours">Vaše kategorije</string>
+    <string name="custom_section_builtin">Ugrađene kategorije</string>
+    <string name="custom_new_category">Nova kategorija</string>
+    <string name="custom_edit_category">Uredi kategoriju</string>
+    <string name="custom_category_name">Naziv kategorije</string>
+    <string name="custom_category_emoji">Emoji (neobavezno)</string>
+    <string name="custom_category_exists">Kategorija s tim nazivom već postoji. Otvorite je i tamo dodajte riječi.</string>
+    <string name="custom_rename_category">Uredi naziv</string>
+    <string name="custom_delete_category">Obriši kategoriju</string>
+    <string name="custom_delete_category_title">Obrisati \"%1$s\"?</string>
+    <string name="custom_delete_category_body">Kategorija i sve njezine riječi bit će obrisane.</string>
+    <string name="custom_your_word_count">Vaše riječi: %1$d</string>
+    <string name="custom_builtin_plus_yours">Ugrađene: %1$d · vaše: %2$d</string>
+    <string name="custom_builtin_note">Ugrađenih riječi: %1$d. Vaše se riječi miješaju s njima.</string>
+    <string name="custom_own_category_note">U ovoj kategoriji su samo vaše riječi.</string>
+    <string name="custom_no_words_builtin">Ovdje još niste dodali nijednu riječ.</string>
+    <string name="custom_category_empty">Još nema riječi. Kategorija bez riječi ne pojavljuje se u igri.</string>
+    <string name="custom_add_word">Dodaj riječ</string>
+    <string name="custom_new_word">Nova riječ</string>
+    <string name="custom_edit_word">Uredi riječ</string>
+    <string name="custom_word">Riječ</string>
+    <string name="custom_easy_hint">Lakša natuknica (neobavezno)</string>
+    <string name="custom_vague_hint">Nejasna natuknica (neobavezno)</string>
+    <string name="custom_hints_optional">Natuknice nisu obavezne. Ako je jedna prazna, impostor u tom načinu za ovu riječ ne dobiva natuknicu.</string>
+    <string name="custom_your_words_header">Vaše riječi (%1$d)</string>
+    <string name="custom_builtin_words_header">Već u ovoj kategoriji (%1$d)</string>
+    <string name="custom_already_here">Već u ovoj kategoriji (%1$d)</string>
+    <string name="custom_similar_words">Slične riječi koje već postoje</string>
+    <string name="custom_no_similar">Ovdje još nema ničeg sličnog. Ova je riječ nova.</string>
+    <string name="custom_word_exists">Ta je riječ već u ovoj kategoriji.</string>
+    <string name="custom_hint_easy_short">Lakša: %1$s</string>
+    <string name="custom_hint_vague_short">Nejasna: %1$s</string>
+    <string name="custom_no_hints">Bez natuknica</string>
+    <string name="custom_delete_word_title">Obrisati \"%1$s\"?</string>
+    <string name="category_word_count_custom">Riječi: %1$d · vaših: %2$d</string>
+    <string name="save">Spremi</string>
+    <string name="delete">Obriši</string>
+    <string name="cd_delete_word">Obriši riječ</string>
+
     <!-- Otkrivanje uloga -->
     <string name="reveal_pick_your_name">Dodirni svoje ime</string>
     <string name="reveal_tap_hint">Dodajte mobitel bilo kojim redom. Svako ime može se otvoriti samo jednom.</string>

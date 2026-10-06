@@ -1,5 +1,7 @@
 # Impostor
 
+[![Build](https://github.com/francocorelli23/impostor-game/actions/workflows/build.yml/badge.svg)](https://github.com/francocorelli23/impostor-game/actions/workflows/build.yml)
+
 **One word. One secret. Find the impostor.**
 
 An offline Android party game for a group sharing a single phone. Everyone gets the
@@ -32,12 +34,13 @@ nobody is ejected and the impostors get away with it.
 
 | | |
 |---|---|
-| Language | Kotlin 2.0 |
+| Language | Kotlin 2.2 |
 | UI | Jetpack Compose, Material 3 |
 | Min / target SDK | 26 / 36 — Android 8.0 and up, targeting Android 16 |
 | Languages | English and Croatian — interface *and* word list, switchable from the home screen |
 | Words | 760 across 25 categories per language, bundled as `assets/words/<lang>.json` |
 | Hints | Two per word — one clear, one cryptic — plus an option to hide the category entirely |
+| My Words | Players can add their own words to any category or make new categories. Hints are optional; a word without one gives the impostor no hint in any mode. Saved per language in `files/custom_words.json` |
 | Permissions | **none** |
 | Dependencies | AndroidX core, lifecycle, activity, Compose. No backend, no analytics, no ads |
 | Fonts | Space Grotesk + Inter, bundled under the SIL Open Font License (see `licenses/`) |
@@ -53,7 +56,8 @@ app/src/main/
     MainActivity.kt              single activity, splash handover, music lifecycle
     ImpostorApplication.kt       three-object container, no DI framework
     data/
-      WordRepository.kt          asset parsing, no-repeat history
+      WordRepository.kt          asset parsing, no-repeat history, merges custom words
+      CustomWordStore.kt         the players' own words and categories (JSON in app storage)
       SettingsRepository.kt      SharedPreferences + StateFlow
       model/Models.kt            Difficulty, HintMode, GameConfig, Round, ...
     game/
@@ -64,7 +68,8 @@ app/src/main/
       theme/                     colour, type, shapes
       components/                buttons, cards, stepper, segmented control, logo
       screens/                   Home, Setup, Reveal, Discussion, Voting, Results,
-                                 HowToPlay, Settings, CategoryPicker, NameEditor
+                                 HowToPlay, Settings, CategoryPicker, NameEditor,
+                                 CustomWords
   res/values/strings.xml         base language
   res/values-hr/strings.xml      Croatian
   res/font, res/raw, res/drawable

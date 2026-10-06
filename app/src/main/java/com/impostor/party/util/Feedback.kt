@@ -26,8 +26,12 @@ class Feedback(
         light()
     }
 
-    fun reveal(isImpostor: Boolean) {
-        sfx(if (isImpostor) Sfx.IMPOSTOR else Sfx.REVEAL)
+    /**
+     * Deliberately identical for crew and impostor: a different clip for the
+     * impostor would let anyone listening pick them out from across the room.
+     */
+    fun reveal() {
+        sfx(Sfx.REVEAL)
         strong()
     }
 

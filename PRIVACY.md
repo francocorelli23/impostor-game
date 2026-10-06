@@ -1,6 +1,6 @@
 # Privacy Policy — Impostor
 
-**Last updated: 25 August 2026**
+**Last updated: 6 October 2026**
 
 ## The short version
 
@@ -18,7 +18,7 @@ no crash-reporting SDK.
 
 ## What is stored on your device
 
-Two things, both in the app's own private storage, and both removed completely when
+Three things, all in the app's own private storage, and all removed completely when
 you uninstall the app:
 
 1. **Your settings** — sound, music, vibration, theme, and your preferred defaults for
@@ -26,12 +26,14 @@ you uninstall the app:
 2. **A short list of recently used words** — up to 80 entries, kept only so the game
    does not hand you the same word twice in a row. You can clear it at any time from
    Settings → *Clear used-word history*.
+3. **Words and categories you add yourself** under *My Words*, with any hints you type
+   for them. They never leave the device; you can edit or delete them at any time.
 
 Nothing about a round — the secret word, who was the impostor, who voted for whom — is
 written to disk. It exists only in memory while you are playing.
 
-If you have Android's backup enabled, these preferences may be included in your own
-Google account backup, which is controlled by you and by Google, not by this app.
+If you have Android's backup enabled, your settings and your own words may be included
+in your own Google account backup, which is controlled by you and by Google, not by this app.
 
 ## Permissions
 

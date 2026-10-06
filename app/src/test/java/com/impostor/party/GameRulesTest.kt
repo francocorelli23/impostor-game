@@ -1,5 +1,7 @@
 package com.impostor.party
 
+import com.impostor.party.data.CustomCategory
+import com.impostor.party.data.CustomWordList
 import com.impostor.party.data.model.Category
 import com.impostor.party.data.model.Difficulty
 import com.impostor.party.data.model.GameConfig
@@ -94,6 +96,57 @@ class GameRulesTest {
     }
 
     @Test
+    fun `a word saved without hints gives the impostor no hint in any mode`() {
+        val bare = WordEntry("Grandma's soup", null, null, Difficulty.MEDIUM, isCustom = true)
+        for (mode in HintMode.entries) {
+            val round = GameRules.buildRound(config(5, 1, mode), category, bare, Random(3))
+            round.roles.forEach { assertNull(it.hint) }
+        }
+    }
+
+    @Test
+    fun `a word with only one hint shows it only in that mode`() {
+        val easyOnly = WordEntry("Lake", "Water", "   ", Difficulty.MEDIUM, isCustom = true)
+        fun hintsFor(mode: HintMode) = GameRules.buildRound(config(5, 1, mode), category, easyOnly, Random(4))
+            .roles.filter { it.isImpostor }.map { it.hint }
+        assertEquals(listOf("Water"), hintsFor(HintMode.EASY))
+        assertEquals(listOf<String?>(null), hintsFor(HintMode.VAGUE))
+    }
+
+    // ----------------------------------------------------------- custom words
+
+    @Test
+    fun `custom words join their category and custom categories follow`() {
+        val mine = WordEntry("Burek", null, null, Difficulty.MEDIUM, isCustom = true)
+        val party = WordEntry("Karaoke", "Singing", null, Difficulty.MEDIUM, isCustom = true)
+        val custom = CustomWordList(
+            categories = listOf(
+                CustomCategory("custom_a", "Party", "🎉"),
+                CustomCategory("custom_empty", "Empty", "⭐"),
+            ),
+            words = mapOf("food" to listOf(mine), "custom_a" to listOf(party)),
+        )
+        val merged = GameRules.mergeCustomWords(listOf(category), custom)
+
+        assertEquals(listOf("food", "custom_a"), merged.map { it.id })
+        assertEquals(listOf("Pizza", "Burek"), merged[0].words.map { it.word })
+        assertEquals(1, merged[0].customWordCount)
+        assertFalse(merged[0].isCustom)
+        assertTrue(merged[1].isCustom)
+        assertEquals("Party", merged[1].name)
+    }
+
+    @Test
+    fun `custom words are in play at every difficulty`() {
+        val mine = WordEntry("Burek", null, null, Difficulty.MEDIUM, isCustom = true)
+        for (setting in Difficulty.entries) {
+            assertTrue(GameRules.isEligible(mine, GameRules.allowedDifficulties(setting)))
+        }
+        val hard = WordEntry("Opera", "e", "h", Difficulty.HARD)
+        assertFalse(GameRules.isEligible(hard, GameRules.allowedDifficulties(Difficulty.EASY)))
+    }
+
+    @Test
     fun `hints never contain the secret word`() {
         val round = build(players = 5, impostors = 1, hints = HintMode.EASY)
         round.roles.filter { it.isImpostor }.forEach {
@@ -104,10 +157,10 @@ class GameRulesTest {
     // -------------------------------------------------------------- impostors
 
     @Test
-    fun `the group may pick any impostor count short of everyone`() {
-        assertEquals(2, GameRules.maxImpostorsFor(3))
-        assertEquals(5, GameRules.maxImpostorsFor(6))
-        assertEquals(19, GameRules.maxImpostorsFor(20))
+    fun `the group may pick any impostor count up to everyone`() {
+        assertEquals(3, GameRules.maxImpostorsFor(3))
+        assertEquals(6, GameRules.maxImpostorsFor(6))
+        assertEquals(20, GameRules.maxImpostorsFor(20))
 
         // Four impostors out of six is allowed, if odd.
         val round = build(players = 6, impostors = 4)
@@ -116,10 +169,11 @@ class GameRulesTest {
     }
 
     @Test
-    fun `somebody always knows the word`() {
+    fun `the impostor count is capped at the table size`() {
         val round = build(players = 5, impostors = 99)
-        assertEquals(4, round.impostorIndices.size)
-        assertTrue(round.roles.any { !it.isImpostor })
+        assertEquals(5, round.impostorIndices.size)
+        // A full-table troll round: nobody receives the word.
+        assertTrue(round.roles.all { it.isImpostor && it.word == null })
     }
 
     @Test
@@ -316,7 +370,8 @@ class GameRulesTest {
     fun `config validation rejects impossible setups`() {
         assertTrue(GameRules.isConfigValid(config(6, 2)))
         assertTrue(GameRules.isConfigValid(config(6, 5)))
-        assertFalse(GameRules.isConfigValid(config(6, 6)))
+        assertTrue(GameRules.isConfigValid(config(6, 6)))
+        assertFalse(GameRules.isConfigValid(config(6, 7)))
         assertFalse(GameRules.isConfigValid(config(2, 1)))
         assertFalse(GameRules.isConfigValid(config(25, 1)))
         assertEquals(mapOf(1 to 2), GameRules.tally(mapOf(0 to 1, 2 to 1)))

@@ -2,8 +2,10 @@
 <data-extraction-rules>
     <cloud-backup>
         <include domain="sharedpref" path="impostor_settings.xml" />
+        <include domain="file" path="custom_words.json" />
     </cloud-backup>
     <device-transfer>
         <include domain="sharedpref" path="impostor_settings.xml" />
+        <include domain="file" path="custom_words.json" />
     </device-transfer>
 </data-extraction-rules>

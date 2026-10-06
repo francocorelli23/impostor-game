@@ -77,6 +77,49 @@
     <string name="category_select_all">Use every category</string>
     <string name="category_word_count">%1$d words</string>
 
+    <!-- My words -->
+    <string name="home_custom_words">My Words</string>
+    <string name="custom_title">My Words</string>
+    <string name="custom_subtitle">Add your own words to any category, or make a new one. They are saved with the %1$s word list.</string>
+    <string name="custom_section_yours">Your categories</string>
+    <string name="custom_section_builtin">Built-in categories</string>
+    <string name="custom_new_category">New Category</string>
+    <string name="custom_edit_category">Edit category</string>
+    <string name="custom_category_name">Category name</string>
+    <string name="custom_category_emoji">Emoji (optional)</string>
+    <string name="custom_category_exists">A category with this name already exists. Open it and add your words there.</string>
+    <string name="custom_rename_category">Edit name</string>
+    <string name="custom_delete_category">Delete category</string>
+    <string name="custom_delete_category_title">Delete \"%1$s\"?</string>
+    <string name="custom_delete_category_body">The category and all of its words will be deleted.</string>
+    <string name="custom_your_word_count">Your words: %1$d</string>
+    <string name="custom_builtin_plus_yours">%1$d built-in · %2$d yours</string>
+    <string name="custom_builtin_note">%1$d built-in words. Yours are mixed in with them.</string>
+    <string name="custom_own_category_note">Only your words are in this category.</string>
+    <string name="custom_no_words_builtin">You have not added any words here yet.</string>
+    <string name="custom_category_empty">No words yet. A category with no words does not show up in the game.</string>
+    <string name="custom_add_word">Add Word</string>
+    <string name="custom_new_word">New word</string>
+    <string name="custom_edit_word">Edit word</string>
+    <string name="custom_word">Word</string>
+    <string name="custom_easy_hint">Easy hint (optional)</string>
+    <string name="custom_vague_hint">Vague hint (optional)</string>
+    <string name="custom_hints_optional">Hints are optional. If one is left blank, the impostor gets no hint for this word in that mode.</string>
+    <string name="custom_your_words_header">Your words (%1$d)</string>
+    <string name="custom_builtin_words_header">Already in this category (%1$d)</string>
+    <string name="custom_already_here">Already in this category (%1$d)</string>
+    <string name="custom_similar_words">Similar words already here</string>
+    <string name="custom_no_similar">Nothing similar here yet. This one is new.</string>
+    <string name="custom_word_exists">This word is already in the category.</string>
+    <string name="custom_hint_easy_short">Easy: %1$s</string>
+    <string name="custom_hint_vague_short">Vague: %1$s</string>
+    <string name="custom_no_hints">No hints</string>
+    <string name="custom_delete_word_title">Delete \"%1$s\"?</string>
+    <string name="category_word_count_custom">%1$d words · %2$d yours</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="cd_delete_word">Delete word</string>
+
     <!-- Reveal -->
     <string name="reveal_pick_your_name">Tap your own name</string>
     <string name="reveal_tap_hint">Pass the phone in any order. Each name can only be opened once.</string>

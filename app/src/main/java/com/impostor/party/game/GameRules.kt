@@ -1,5 +1,6 @@
 package com.impostor.party.game
 
+import com.impostor.party.data.CustomWordList
 import com.impostor.party.data.model.Category
 import com.impostor.party.data.model.Difficulty
 import com.impostor.party.data.model.GameConfig
@@ -20,11 +21,11 @@ object GameRules {
     const val MAX_PLAYERS = 20
 
     /**
-     * The only hard rule is that somebody has to know the word, so at most
-     * players - 1 impostors. Everything past half is the group's business.
+     * Anything up to the whole table. Everyone being an impostor makes for a
+     * deliberate troll round where nobody has the word - the group's call.
      */
     fun maxImpostorsFor(playerCount: Int): Int =
-        (playerCount).coerceAtLeast(1)
+        playerCount.coerceAtLeast(1)
 
     /** Past this the impostors outnumber the crew - allowed, but worth flagging. */
     fun balancedImpostorsFor(playerCount: Int): Int =
@@ -50,6 +51,34 @@ object GameRules {
         Difficulty.MEDIUM -> setOf(Difficulty.EASY, Difficulty.MEDIUM)
         Difficulty.HARD -> setOf(Difficulty.MEDIUM, Difficulty.HARD)
         Difficulty.MIXED -> Difficulty.wordTags.toSet()
+    }
+
+    /**
+     * Whether a word can come up at this difficulty setting. Words the players
+     * added themselves carry no real difficulty, so they are always in play.
+     */
+    fun isEligible(entry: WordEntry, allowed: Set<Difficulty>): Boolean =
+        entry.isCustom || entry.difficulty in allowed
+
+    /**
+     * Folds the players' own words into the bundled list: extra words join their
+     * bundled category, and custom categories follow the bundled ones. A custom
+     * category with no words yet is left out - there would be nothing to draw.
+     */
+    fun mergeCustomWords(bundled: List<Category>, custom: CustomWordList): List<Category> {
+        val extended = bundled.map { category ->
+            val extra = custom.wordsIn(category.id)
+            if (extra.isEmpty()) category else category.copy(words = category.words + extra)
+        }
+        val created = custom.categories.mapNotNull { own ->
+            val words = custom.wordsIn(own.id)
+            if (words.isEmpty()) {
+                null
+            } else {
+                Category(id = own.id, name = own.name, emoji = own.emoji, words = words, isCustom = true)
+            }
+        }
+        return extended + created
     }
 
     fun defaultPlayerName(index: Int): String = "Player ${index + 1}"
@@ -88,11 +117,12 @@ object GameRules {
             .take(impostorCount)
             .toSet()
 
+        // A word saved without a hint gives the impostor nothing, whatever the mode.
         val hint = when (config.hintMode) {
             HintMode.NONE -> null
             HintMode.EASY -> entry.easyHint
             HintMode.VAGUE -> entry.vagueHint
-        }
+        }?.trim()?.takeIf { it.isNotEmpty() }
 
         val roles = (0 until config.playerCount).map { index ->
             val isImpostor = index in impostors

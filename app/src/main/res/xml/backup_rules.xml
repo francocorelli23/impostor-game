@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Only the user's own preferences are eligible for backup. There is no other data. -->
+<!-- Only the user's own preferences and their own custom words are eligible for backup. -->
 <full-backup-content>
     <include domain="sharedpref" path="impostor_settings.xml" />
+    <include domain="file" path="custom_words.json" />
 </full-backup-content>

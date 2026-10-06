@@ -16,23 +16,34 @@ import kotlin.random.Random
  *
  * Everything is local: one JSON file per language ships inside the APK, is parsed
  * with the platform's own org.json (no third-party parser, no reflection) and is
- * then kept in memory for the lifetime of the process.
+ * then kept in memory for the lifetime of the process. The players' own words from
+ * [CustomWordStore] are folded in on every read, so edits show up straight away.
  */
 class WordRepository(
     private val context: Context,
     private val prefs: SharedPreferences,
+    private val custom: CustomWordStore,
 ) {
 
     data class Pick(val category: Category, val entry: WordEntry)
 
     private val cache = HashMap<String, List<Category>>()
 
+    /** Every category in play: the bundled list plus the players' own words. */
     suspend fun categories(language: String): List<Category> =
+        withContext(Dispatchers.IO) {
+            GameRules.mergeCustomWords(loadBlocking(language), custom.forLanguage(tagFor(language)))
+        }
+
+    /** Only what ships with the app - the word editor lists these as-is. */
+    suspend fun bundledCategories(language: String): List<Category> =
         withContext(Dispatchers.IO) { loadBlocking(language) }
+
+    private fun tagFor(language: String) = if (language in SUPPORTED) language else FALLBACK
 
     @Synchronized
     private fun loadBlocking(language: String): List<Category> {
-        val tag = if (language in SUPPORTED) language else FALLBACK
+        val tag = tagFor(language)
         cache[tag]?.let { return it }
         val parsed = try {
             parse(context.assets.open("$ASSET_DIR/$tag.json").bufferedReader().use { it.readText() })
@@ -58,8 +69,8 @@ class WordRepository(
                 words.add(
                     WordEntry(
                         word = w.getString("w"),
-                        easyHint = w.getString("e"),
-                        vagueHint = w.getString("h"),
+                        easyHint = w.optHint("e"),
+                        vagueHint = w.optHint("h"),
                         difficulty = Difficulty.fromKey(w.optString("d")),
                     )
                 )
@@ -77,6 +88,10 @@ class WordRepository(
         }
         return result
     }
+
+    /** A missing, null or blank hint all mean the same thing: there is no hint. */
+    private fun JSONObject.optHint(key: String): String? =
+        if (!has(key) || isNull(key)) null else optString(key).trim().ifEmpty { null }
 
     /**
      * Picks one word for a round.
@@ -108,12 +123,12 @@ class WordRepository(
 
         // Prefer a category that still has an unused word at this difficulty.
         val withFresh = eligible.filter { category ->
-            category.words.any { it.difficulty in allowed && key(category.id, it.word) !in recent }
+            category.words.any { GameRules.isEligible(it, allowed) && key(category.id, it.word) !in recent }
         }
         val pool = withFresh.ifEmpty { eligible }
         val category = pool[random.nextInt(pool.size)]
 
-        var words = category.words.filter { it.difficulty in allowed }
+        var words = category.words.filter { GameRules.isEligible(it, allowed) }
         if (words.isEmpty()) words = category.words
         val fresh = words.filter { key(category.id, it.word) !in recent }
         val source = fresh.ifEmpty { words }

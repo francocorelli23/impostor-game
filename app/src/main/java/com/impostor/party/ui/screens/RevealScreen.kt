@@ -77,7 +77,7 @@ fun RevealScreen(
 
     LaunchedEffect(step, activeReveal) {
         if (step == RevealStep.SHOWING && active != null) {
-            feedback.reveal(active.isImpostor)
+            feedback.reveal()
         }
     }
 

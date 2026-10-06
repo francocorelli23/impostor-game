@@ -12,11 +12,8 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -39,11 +36,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.impostor.party.BuildConfig
 import com.impostor.party.ImpostorApplication
 import com.impostor.party.R
+import com.impostor.party.data.CustomWordList
 import com.impostor.party.data.model.AppLanguage
 import com.impostor.party.data.model.Category
 import com.impostor.party.game.GameViewModel
 import com.impostor.party.game.Phase
+import com.impostor.party.ui.components.AppDialog
 import com.impostor.party.ui.screens.CategoryPicker
+import com.impostor.party.ui.screens.CustomWordActions
+import com.impostor.party.ui.screens.CustomWordsScreen
 import com.impostor.party.ui.screens.DiscussionScreen
 import com.impostor.party.ui.screens.HomeScreen
 import com.impostor.party.ui.screens.HowToPlayScreen
@@ -57,7 +58,7 @@ import com.impostor.party.util.Feedback
 import com.impostor.party.util.LocalFeedback
 import java.util.Locale
 
-enum class Route { HOME, SETUP, GAME, HOW_TO_PLAY, SETTINGS }
+enum class Route { HOME, SETUP, GAME, HOW_TO_PLAY, SETTINGS, CUSTOM_WORDS }
 
 @Composable
 fun ImpostorApp() {
@@ -123,8 +124,28 @@ private fun AppContent(
     val resourceContext = LocalContext.current
 
     val languageTag = remember(settings.language) { container.settings.effectiveLanguageTag() }
-    val categories by produceState(initialValue = emptyList<Category>(), languageTag) {
+    // Re-read whenever the players edit their own words, so changes show up at once.
+    val customLists by container.customWords.lists.collectAsState()
+    val categories by produceState(initialValue = emptyList<Category>(), languageTag, customLists) {
         value = container.words.categories(languageTag)
+    }
+    val bundledCategories by produceState(initialValue = emptyList<Category>(), languageTag) {
+        value = container.words.bundledCategories(languageTag)
+    }
+    val customWordActions = remember(languageTag) {
+        val store = container.customWords
+        CustomWordActions(
+            addCategory = { name, emoji -> store.addCategory(languageTag, name, emoji) },
+            updateCategory = { id, name, emoji -> store.updateCategory(languageTag, id, name, emoji) },
+            deleteCategory = { id -> store.deleteCategory(languageTag, id) },
+            addWord = { categoryId, word, easy, vague ->
+                store.addWord(languageTag, categoryId, word, easy, vague)
+            },
+            updateWord = { categoryId, original, word, easy, vague ->
+                store.updateWord(languageTag, categoryId, original, word, easy, vague)
+            },
+            deleteWord = { categoryId, word -> store.deleteWord(languageTag, categoryId, word) },
+        )
     }
 
     val viewModel: GameViewModel = viewModel(factory = GameViewModel.Factory(application))
@@ -193,7 +214,18 @@ private fun AppContent(
                         navigateTo(Route.SETUP)
                     },
                     onHowToPlay = { navigateTo(Route.HOW_TO_PLAY) },
+                    onCustomWords = { navigateTo(Route.CUSTOM_WORDS) },
                     onSettings = { navigateTo(Route.SETTINGS) },
+                )
+
+                Route.CUSTOM_WORDS -> CustomWordsScreen(
+                    bundled = bundledCategories,
+                    custom = customLists[languageTag] ?: CustomWordList(),
+                    languageName = stringResource(
+                        if (languageTag == "hr") R.string.language_croatian else R.string.language_english
+                    ),
+                    actions = customWordActions,
+                    onBack = { pop() },
                 )
 
                 Route.SETUP -> SetupScreen(
@@ -270,23 +302,17 @@ private fun AppContent(
     }
 
     if (showQuitDialog) {
-        AlertDialog(
-            onDismissRequest = { showQuitDialog = false },
-            title = { Text(stringResource(R.string.quit_title)) },
-            text = { Text(stringResource(R.string.quit_body)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    showQuitDialog = false
-                    goHome()
-                }) {
-                    Text(stringResource(R.string.quit_confirm))
-                }
+        AppDialog(
+            title = stringResource(R.string.quit_title),
+            body = stringResource(R.string.quit_body),
+            confirmText = stringResource(R.string.quit_confirm),
+            dismissText = stringResource(R.string.cancel),
+            destructive = true,
+            onConfirm = {
+                showQuitDialog = false
+                goHome()
             },
-            dismissButton = {
-                TextButton(onClick = { showQuitDialog = false }) {
-                    Text(stringResource(R.string.cancel))
-                }
-            },
+            onDismiss = { showQuitDialog = false },
         )
     }
 

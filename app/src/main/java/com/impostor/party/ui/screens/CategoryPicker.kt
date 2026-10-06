@@ -64,7 +64,16 @@ fun CategoryPicker(
 ) {
     BackHandler(onBack = onDismiss)
 
-    var selection by remember(selectedIds) { mutableStateOf(selectedIds) }
+    // Drop ids that no longer exist - a custom category may have been deleted since.
+    var selection by remember(selectedIds, categories) {
+        mutableStateOf(
+            if (categories.isEmpty()) {
+                selectedIds
+            } else {
+                selectedIds.filter { id -> categories.any { it.id == id } }.toSet()
+            }
+        )
+    }
     val allSelected = selection.isEmpty() || selection.size >= categories.size
 
     /** Collapses a full selection back to the "all categories" sentinel. */
@@ -107,7 +116,15 @@ fun CategoryPicker(
                     CategoryCell(
                         emoji = category.emoji,
                         name = category.name,
-                        detail = stringResource(R.string.category_word_count, category.words.size),
+                        detail = if (category.customWordCount > 0) {
+                            stringResource(
+                                R.string.category_word_count_custom,
+                                category.words.size,
+                                category.customWordCount,
+                            )
+                        } else {
+                            stringResource(R.string.category_word_count, category.words.size)
+                        },
                         selected = !allSelected && category.id in selection,
                         wide = false,
                         onClick = {

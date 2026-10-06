@@ -9,7 +9,6 @@ import com.impostor.party.R
 enum class Sfx {
     TAP,
     REVEAL,
-    IMPOSTOR,
     HIDE,
     VOTE,
     TICK,
@@ -49,7 +48,6 @@ class SoundManager(context: Context) {
         }
         load(Sfx.TAP, R.raw.sfx_tap)
         load(Sfx.REVEAL, R.raw.sfx_reveal)
-        load(Sfx.IMPOSTOR, R.raw.sfx_impostor)
         load(Sfx.HIDE, R.raw.sfx_hide)
         load(Sfx.VOTE, R.raw.sfx_vote)
         load(Sfx.TICK, R.raw.sfx_tick)

@@ -43,6 +43,7 @@ fun HomeScreen(
     onLanguageChange: (AppLanguage) -> Unit,
     onNewGame: () -> Unit,
     onHowToPlay: () -> Unit,
+    onCustomWords: () -> Unit,
     onSettings: () -> Unit,
 ) {
     var entered by remember { mutableStateOf(false) }
@@ -112,6 +113,10 @@ fun HomeScreen(
                     SecondaryButton(
                         text = stringResource(R.string.home_how_to_play),
                         onClick = onHowToPlay,
+                    )
+                    SecondaryButton(
+                        text = stringResource(R.string.home_custom_words),
+                        onClick = onCustomWords,
                     )
                     SecondaryButton(
                         text = stringResource(R.string.home_settings),

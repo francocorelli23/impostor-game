@@ -1,5 +1,13 @@
 # Build output
 build/
+# Built APKs / bundles belong in GitHub Releases, not in the source tree
+app/release/
+app/debug/
+*.apk
+*.aab
+*.apks
+output-metadata.json
+*.hprof
 .gradle/
 .kotlin/
 .cxx/
@@ -26,4 +34,8 @@ Thumbs.db
 
 # Scratch
 _to_delete/
+__pycache__/
+*.pyc
+# WAVs written by tools/mksfx.py before they are encoded to OGG
+app/src/main/res/raw_wav/
 *.zip

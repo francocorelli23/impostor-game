@@ -2,14 +2,15 @@
 
 ## Requirements
 
-- **Android Studio** Ladybug (2024.2) or newer, or a standalone JDK 17 + Android SDK
+- A recent **Android Studio** (one that supports the AGP version in
+  `gradle/libs.versions.toml`), or a standalone JDK 17+ and the Android SDK
 - **Android SDK Platform 36** and **Build-Tools 36** (Android Studio offers to install
   them the first time you open the project)
 - Internet access **for the build only** — Gradle downloads AGP, Kotlin and the
   AndroidX libraries on the first run. The finished app itself never uses the network.
 
 The Gradle wrapper is committed, so you do not need Gradle installed. On first run it
-downloads Gradle 8.13 automatically.
+downloads the Gradle version pinned in `gradle/wrapper/gradle-wrapper.properties`.
 
 ---
 
@@ -171,5 +172,5 @@ from the command line set `JAVA_HOME` to a JDK 17 install.
 `assets/words/<code>.json` with the same category ids. `tools/verify_project.py`
 checks that all three stay in sync.
 
-**Android Studio offers to upgrade AGP** — safe to accept; the project is pinned to
-AGP 8.13.0 / Kotlin 2.0.21 in `gradle/libs.versions.toml`.
+**Android Studio offers to upgrade AGP** — safe to accept; every version the project
+uses is pinned in `gradle/libs.versions.toml`.

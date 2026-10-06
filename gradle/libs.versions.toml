@@ -1,6 +1,6 @@
 [versions]
-agp = "8.13.0"
-kotlin = "2.0.21"
+agp = "9.3.2"
+kotlin = "2.2.10"
 coreKtx = "1.13.1"
 splashscreen = "1.0.1"
 lifecycle = "2.8.7"

@@ -65,9 +65,13 @@ enum class AppLanguage(val key: String) {
 
 data class WordEntry(
     val word: String,
-    val easyHint: String,
-    val vagueHint: String,
+    /** Null when nobody wrote one - the impostor then simply gets no hint. */
+    val easyHint: String?,
+    /** Null when nobody wrote one - the impostor then simply gets no hint. */
+    val vagueHint: String?,
     val difficulty: Difficulty,
+    /** Added by the players rather than shipped with the app. Eligible at every difficulty. */
+    val isCustom: Boolean = false,
 )
 
 data class Category(
@@ -75,7 +79,12 @@ data class Category(
     val name: String,
     val emoji: String,
     val words: List<WordEntry>,
-)
+    /** Created by the players rather than shipped with the app. */
+    val isCustom: Boolean = false,
+) {
+    /** How many of [words] the players added themselves. */
+    val customWordCount: Int get() = words.count { it.isCustom }
+}
 
 data class GameConfig(
     val playerCount: Int,

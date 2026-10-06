@@ -76,10 +76,20 @@ fun DiscussionScreen(
                 .padding(horizontal = 24.dp),
         ) {
             SectionCard {
+                // Hiding the category from the impostor only works if it stays
+                // hidden here too - otherwise the discussion screen hands it back.
                 Text(
-                    text = "${round.categoryEmoji} ${round.categoryName}",
+                    text = if (round.categoryHiddenFromImpostor) {
+                        stringResource(R.string.reveal_category_hidden)
+                    } else {
+                        "${round.categoryEmoji} ${round.categoryName}"
+                    },
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = if (round.categoryHiddenFromImpostor) {
+                        ImpostorTheme.extended.muted
+                    } else {
+                        MaterialTheme.colorScheme.onSurface
+                    },
                 )
                 Spacer(Modifier.height(10.dp))
                 Text(
